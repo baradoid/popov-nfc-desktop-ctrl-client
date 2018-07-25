@@ -22,6 +22,9 @@ Dialog::Dialog(QWidget *parent) :
     connect(sock, SIGNAL(readyRead()), this, SLOT(handleReadyRead()));
     connect(sock, SIGNAL(disconnected()), this, SLOT(handleDisconnected()));
 
+    //bells = new QSound(":/snd/sc");
+    //bells->play();
+
 }
 
 Dialog::~Dialog()
@@ -71,4 +74,17 @@ void Dialog::on_pushButtonConnect_clicked()
     else if(ui->pushButtonConnect->text()=="Disconnect"){
         sock->close();
     }
+}
+
+void Dialog::on_pushButtonShort_clicked()
+{
+
+    //qDebug() << qPrintable(bells->fileName());
+    //bells->play();
+    QSound::play(":/snd/snd/google_short.wav");
+}
+
+void Dialog::on_pushButtonLong_clicked()
+{
+    QSound::play(":/snd/snd/google_long.wav");
 }

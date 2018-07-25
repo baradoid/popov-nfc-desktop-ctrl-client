@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/snd">
+        <file>snd/google_long.wav</file>
+        <file>snd/google_short.wav</file>
+    </qresource>
+</RCC>

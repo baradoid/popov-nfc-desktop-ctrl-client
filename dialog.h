@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QTcpSocket>
 #include <QSettings>
+#include <QSound>
 
 namespace Ui {
 class Dialog;
@@ -22,12 +23,15 @@ private:
     QTcpSocket *sock;
     uint32_t bRecvd;
     QSettings settings;
+    //QSound *bells;
 
 private slots:
     void handleConnected();
     void handleReadyRead();
     void handleDisconnected();
     void on_pushButtonConnect_clicked();
+    void on_pushButtonShort_clicked();
+    void on_pushButtonLong_clicked();
 };
 
 #endif // DIALOG_H
