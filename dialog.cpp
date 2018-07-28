@@ -1,6 +1,6 @@
 #include "dialog.h"
 #include "ui_dialog.h"
-
+#include <QProcess>
 
 #if defined(Q_OS_WIN)
 #include <QSound>
@@ -103,7 +103,7 @@ void Dialog::on_pushButtonShort_clicked()
 #if defined(Q_OS_WIN)
     QSound::play(":/snd/snd/google_short_contact.wav");
 #elif defined(Q_OS_LINUX)
-    system("omxplayer snd/google_short_contact.wav");
+    QProcess::startDetached("omxplayer snd/google_short_contact.wav");
 #endif
 }
 
@@ -112,7 +112,6 @@ void Dialog::on_pushButtonLong_clicked()
 #if defined(Q_OS_WIN)
     QSound::play(":/snd/snd/google_long_contact.wav");
 #elif defined(Q_OS_LINUX)
-    //system("pwd");
-    system("omxplayer snd/google_long_contact.wav");
+    QProcess::startDetached("omxplayer snd/google_long_contact.wav");
 #endif
 }
