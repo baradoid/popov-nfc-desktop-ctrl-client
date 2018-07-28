@@ -52,6 +52,22 @@ void Dialog::handleReadyRead()
 
     ui->lineEdit->setText(strParts[0]);
     int prog = strParts[1].toInt();
+    if(prog == 100){
+        if(ui->progressBar->value() != 100){
+            QSound::play(":/snd/snd/google_long_contact.wav");
+
+            QPalette Pal(palette());
+            Pal.setColor(QPalette::Base, Qt::blue);
+            ui->progressBar->setAutoFillBackground(true);
+            ui->progressBar->setPalette(Pal);
+        }
+
+    }
+    else if(prog == 0){
+        if(ui->progressBar->value() < 100){
+            QSound::play(":/snd/snd/google_short_contact.wav");
+        }
+    }
     ui->progressBar->setValue(prog);
 
 
@@ -81,10 +97,12 @@ void Dialog::on_pushButtonShort_clicked()
 
     //qDebug() << qPrintable(bells->fileName());
     //bells->play();
-    QSound::play(":/snd/snd/google_short.wav");
+    //QSound::play(":/snd/snd/google_short.wav");
+    QSound::play(":/snd/snd/google_short_contact.wav");
 }
 
 void Dialog::on_pushButtonLong_clicked()
 {
-    QSound::play(":/snd/snd/google_long.wav");
+    //QSound::play(":/snd/snd/google_long.wav");
+    QSound::play(":/snd/snd/google_long_contact.wav");
 }
