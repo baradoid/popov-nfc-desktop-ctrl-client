@@ -2,6 +2,10 @@
 #include "ui_dialog.h"
 
 
+#if defined(Q_OS_WIN)
+#include <QSound>
+#endif
+
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog),
@@ -54,7 +58,8 @@ void Dialog::handleReadyRead()
     int prog = strParts[1].toInt();
     if(prog == 100){
         if(ui->progressBar->value() != 100){
-            QSound::play(":/snd/snd/google_long_contact.wav");
+            //QSound::play(":/snd/snd/google_long_contact.wav");
+            on_pushButtonLong_clicked();
 
             QPalette Pal(palette());
             Pal.setColor(QPalette::Base, Qt::blue);
@@ -65,7 +70,8 @@ void Dialog::handleReadyRead()
     }
     else if(prog == 0){
         if(ui->progressBar->value() < 100){
-            QSound::play(":/snd/snd/google_short_contact.wav");
+            //QSound::play(":/snd/snd/google_short_contact.wav");
+            on_pushButtonShort_clicked();
         }
     }
     ui->progressBar->setValue(prog);
@@ -94,15 +100,19 @@ void Dialog::on_pushButtonConnect_clicked()
 
 void Dialog::on_pushButtonShort_clicked()
 {
-
-    //qDebug() << qPrintable(bells->fileName());
-    //bells->play();
-    //QSound::play(":/snd/snd/google_short.wav");
+#if defined(Q_OS_WIN)
     QSound::play(":/snd/snd/google_short_contact.wav");
+#elif defined(Q_OS_LINUX)
+    system("omxplayer snd/google_short_contact.wav");
+#endif
 }
 
 void Dialog::on_pushButtonLong_clicked()
 {
-    //QSound::play(":/snd/snd/google_long.wav");
+#if defined(Q_OS_WIN)
     QSound::play(":/snd/snd/google_long_contact.wav");
+#elif defined(Q_OS_LINUX)
+    //system("pwd");
+    system("omxplayer snd/google_long_contact.wav");
+#endif
 }

@@ -4,7 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network multimedia
+QT       += core gui network
+
+win32{
+QT       += multimedia
+}
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

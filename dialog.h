@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QTcpSocket>
 #include <QSettings>
-#include <QSound>
+#include <stdint.h>
 
 namespace Ui {
 class Dialog;
